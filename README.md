@@ -14,3 +14,18 @@ golang: 1.19+
 node: 1.18+
 vue/cli: 5.0+
 ```
+### 关于日志
+配置文件位置：config/config.json
+开发环境配置示例：
+```json
+{
+  "logenv": "dev"
+}
+```
+除生开发环境之外日志配置配置示例：
+```json
+{
+  "logenv": "prod"
+}
+
+```
