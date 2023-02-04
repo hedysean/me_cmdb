@@ -17,15 +17,15 @@ import (
 
 type User struct {
 	gorm.Model
-	Username     string `gorm:"unique_index;size:255;comment:'账户名'" json:"username" sql:"index" json:"username,omitempty"`
+	Username     string `validate:"required" label:"账户名" gorm:"unique_index;size:255;comment:'账户名'" json:"username" sql:"index" json:"username,omitempty"`
 	HashPassword string `gorm:"not null;size:255;comment:'密码'" json:"-" json:"hashPassword,omitempty"`
-	Password     string `gorm:"-" json:"password,omitempty" json:"password,omitempty"`
+	Password     string `validate:"required" label:"登陆密码" gorm:"-" json:"password,omitempty" json:"password,omitempty"`
 	Nickname     string `gorm:"size:255;comment:'昵称'" json:"nickname" sql:"index" json:"nickname,omitempty"`
 	Mobile       string `gorm:"index;size:15;comment:'手机';" json:"mobile" json:"mobile,omitempty"`
-	Email        string `valid:"email" gorm:"index;size:255;comment:'邮箱';" json:"email" json:"email,omitempty"`
+	Email        string `validate:"omitempty,email" valid:"email" gorm:"index;size:255;comment:'邮箱';" json:"email" json:"email,omitempty"`
 	Avatar       string `gorm:"size:255;comment:'头像'" json:"avatar" json:"avatar,omitempty"`
 	Sex          bool   `gorm:"type:boolean;default:true;comment:'性别'" json:"sex" json:"sex,omitempty"`
-	Ip           string `valid:"ip" gorm:"size:255;comment:'IP地址';" json:"ip" json:"ip,omitempty"`
+	Ip           string `validate:"omitempty,ipv4" gorm:"size:255;comment:'IP地址';" json:"ip" json:"ip,omitempty"`
 	Status       bool   `gorm:"type:boolean;default:true;comment:'状态'" json:"status" json:"status,omitempty"`
 }
 

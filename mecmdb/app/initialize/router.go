@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"mecmdb/app/middleware"
+	"mecmdb/app/router"
 )
 
 /*
@@ -17,10 +18,15 @@ func InitRouter() *gin.Engine {
 	Router := gin.Default()
 	//注册使用中间件
 	Router.Use(middleware.GinLogger(), middleware.GinRecovery(true))
+	Router.Use(middleware.ExceptionMiddleware)
+	Router.Use(middleware.CORS)
 
-	zap.S().Info("日志中间件注册完成...")
+	zap.S().Info("中间件注册完成...")
 	//Api路由分组
-	//ApiGroup := Router.Group("/api")
+	ApiGroup := Router.Group("/api")
+	// 3. 初始化用户相关路由
+	router.InitUserRouter(ApiGroup)
+	zap.S().Info("路由初始化完成....")
 
 	return Router
 

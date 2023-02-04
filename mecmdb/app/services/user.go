@@ -29,3 +29,41 @@ func CreateUser(ctx *gin.Context) (uint, error) {
 
 	return user.Insert()
 }
+
+/*
+*
+获取指定ID账户
+*/
+func GetUserById(id uint) (user User) {
+	user = User{}
+	user.GetOneById(id)
+	return user
+}
+
+/**
+根据账户信息(用户名、手机、邮箱)获取用户
+*/
+
+func GetUserByAccount(account string) (user User) {
+	user = User{}
+	user.GetOneByAccount(account)
+	return user
+}
+
+/**
+获取所有用户
+*/
+
+func GetAllUser() []User {
+	user := User{}
+	return user.GetAll()
+}
+
+/**
+更新密码
+*/
+
+func ChangeUserPassword(user User, RawPassword string) {
+	password, _ := MakeHashPassword(RawPassword)
+	user.ChangePassword(password)
+}
