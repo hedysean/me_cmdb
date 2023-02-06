@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 	"mecmdb/app/config"
 	"mecmdb/app/initialize"
 	"mecmdb/app/model"
 	"path/filepath"
+
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 
 	. "mecmdb/app/database"
 )
@@ -16,12 +17,15 @@ func main() {
 
 	//获取一个基于整个目录入口所在得路径
 	dir, err := filepath.Abs(filepath.Dir("."))
+	// vscdoe和 jet 目录逻辑不一致，这里需要根据编辑器修改
+	//fmt.Println("dir", dir)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	//初始化配置
-	err = config.Init(fmt.Sprintf("%s/mecmdb/app/config/config.json", dir))
+	err = config.Init(fmt.Sprintf("%s/app/config/config.json", dir))
+	fmt.Println("我的位置", dir)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -47,7 +51,7 @@ func main() {
 	Orm := InitDB(config.Conf.DatabaseConfig)
 	// 数据迁移
 	Orm.AutoMigrate(&model.User{})
-	// 禁用复数
+	// 禁用复数ll
 	Orm.SingularTable(true)
 	defer Orm.Close()
 

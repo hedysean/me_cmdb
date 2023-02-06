@@ -1,9 +1,13 @@
 {
   "mode": "debug",
-  "port": 8080,
+  "port": 8000,
+  "secret_key": "Ub=~sV,U1QXmvHObh_My6#6-O9>}zK{8",
+  "jwt": {
+    "exp": 180000
+  },
   "log": {
     "level": "debug",
-    "filename": "mecmdb/logs/mecmdb.log",
+    "filename": "./logs/mecmdb.log",
     "maxsize": 300,
     "max_age": 7,
     "max_backups": 10
@@ -13,8 +17,8 @@
     "host": "127.0.0.1",
     "port": "3306",
     "database": "mecmdb",
-    "username": "mecmdb",
-    "password": "mecmdb",
+    "username": "root",
+    "password": "123456",
     "charset": "utf8mb4",
     "maximum_connection": 10,
     "maximum_free_connection": 50,

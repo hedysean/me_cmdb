@@ -67,3 +67,50 @@ func ChangeUserPassword(user User, RawPassword string) {
 	password, _ := MakeHashPassword(RawPassword)
 	user.ChangePassword(password)
 }
+
+// 测试用
+
+type TestUserinfo struct {
+	ID       uint   `json:"id"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Nickname string `json:"nickname"`
+	Avatar   string `json:"avatar"`
+}
+
+func UserLogin(ctx *gin.Context) (user TestUserinfo) {
+	user = TestUserinfo{
+		ID:       1,
+		Username: "san",
+		Password: "123456",
+		Nickname: "abcd",
+		Avatar:   "ddd",
+	}
+
+	return user
+}
+
+//func UserLogin(ctx *gin.Context) (user User, err error) {
+//	user = User{}
+//	//if err = ctx.ShouldBindJSON(&user); err != nil {
+//	//	return user, err
+//	//}
+//
+//	//if err = validator.UserValidator(&user); err != nil {
+//	//	return user, err
+//	//}
+//
+//	//user.GetOneByAccount(user.Username)
+//	//if user.ID < 1 {
+//	//	return user, errors.New(constants.NoSuchUser)
+//	//}
+//	//
+//	//ret := CheckPassword(user.HashPassword, user.Password)
+//	//
+//	//if !ret {
+//	//	err = errors.New(constants.PasswordError)
+//	//	return
+//	//}
+//
+//	return
+//}

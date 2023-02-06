@@ -19,6 +19,9 @@ func InitRouter() *gin.Engine {
 	//注册使用中间件
 	Router.Use(middleware.GinLogger(), middleware.GinRecovery(true))
 	Router.Use(middleware.ExceptionMiddleware)
+	
+	//全局验证
+	//Router.Use(middleware.JWTAuthorization())
 	Router.Use(middleware.CORS)
 
 	zap.S().Info("中间件注册完成...")

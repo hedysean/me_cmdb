@@ -19,8 +19,9 @@ func InitUserRouter(Router *gin.RouterGroup) {
 	UserRouter := Router.Group("user")
 	{
 		// 用户认证登陆
-		utils.Register(UserRouter, []string{"GET", "POST"}, "authenticate", api.UserAuthenticate)
+		utils.Register(UserRouter, []string{"POST"}, "authenticate", api.UserAuthenticate)
 		// 用户创建
-		utils.Register(UserRouter, []string{"POST"}, "", api.UserCreate)
+		//utils.Register(UserRouter, []string{"POST"}, "", api.UserCreate)
+		//utils.Register(UserRouter, []string{"POST"}, "", middleware.JWTAuthorization(), api.UserCreate)
 	}
 }

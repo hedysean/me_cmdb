@@ -1,8 +1,10 @@
 package config
 
 import (
+	"os"
+
+	"github.com/dgrijalva/jwt-go"
 	"github.com/goccy/go-json"
-	"io/ioutil"
 )
 
 /*
@@ -16,11 +18,13 @@ import (
 //服务运行参数
 
 type Config struct {
-	Mode            string `json:"mode"`
-	Port            int    `json:"port"`
-	Logenv          string `json:"logenv"`
-	*LogConfig      `json:"log"`
-	*DatabaseConfig `json:"database"`
+	Mode                string `json:"mode"`
+	Port                int    `json:"port"`
+	Logenv              string `json:"logenv"`
+	SecretKey           string `json:"secret_key"`
+	*LogConfig          `json:"log"`
+	*DatabaseConfig     `json:"database"`
+	*jwt.StandardClaims `json:"jwt"`
 }
 
 // 将日志输出到文件中
@@ -54,7 +58,7 @@ func Init(filepath string) error {
 	/**
 	filepath 配置文件路径
 	*/
-	b, err := ioutil.ReadFile(filepath)
+	b, err := os.ReadFile(filepath)
 	if err != nil {
 		return err
 	}

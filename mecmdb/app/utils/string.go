@@ -1,11 +1,14 @@
 package utils
 
 import (
-	"golang.org/x/crypto/bcrypt"
+	"fmt"
 	"math/rand"
 	"time"
 
-	. "mecmdb/app/constants"
+	"github.com/satori/go.uuid"
+	"golang.org/x/crypto/bcrypt"
+
+	"mecmdb/app/constants"
 )
 
 /*
@@ -19,7 +22,7 @@ func Random(n int, chars string) string {
 		return ""
 	}
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	bytes := make([]byte, n, n)
+	bytes := make([]byte, n)
 	l := len(chars)
 	for i := 0; i < n; i++ {
 		bytes[i] = chars[r.Intn(l)]
@@ -31,28 +34,28 @@ func RandomLetters(n int) string {
 	/**
 	生成指定长度的字符串(字母)
 	*/
-	return Random(n, LETTERS)
+	return Random(n, constants.LETTERS)
 }
 
 func RandomNumeric(n int) string {
 	/**
 	生成指定长度的字符串(数字)
 	*/
-	return Random(n, NUMBERS)
+	return Random(n, constants.NUMBERS)
 }
 
 func RandomLettersNumeric(n int) string {
 	/**
 	生成指定长度的字符串(数字+字母)
 	*/
-	return Random(n, LETTERS_NUMBERIC)
+	return Random(n, constants.LETTERS_NUMBERIC)
 }
 
 func RandomAscii(n int) string {
 	/**
 	生成指定长度的字符串(字母+数字+特殊字符)
 	*/
-	return Random(n, ASCII)
+	return Random(n, constants.ASCII)
 }
 
 /*
@@ -77,8 +80,9 @@ func CheckPassword(HashPassword string, RawPassword string) bool {
 	ByteHash := []byte(HashPassword)
 	BytePwd := []byte(RawPassword)
 	err := bcrypt.CompareHashAndPassword(ByteHash, BytePwd)
-	if err != nil {
-		return false
-	}
-	return true
+	return err == nil
+}
+
+func uuid4() string {
+	return fmt.Sprintf("%s", uuid.NewV4())
 }
