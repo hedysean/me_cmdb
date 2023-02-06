@@ -1,25 +1,60 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+// import ShowCenter from "../views/ShowCenter.vue"
+import Base from "../views/Base.vue"
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    meta:{
+      title: 'MeCMDB'
+    }
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/',
+    alias:'/',
+    name: 'home',
+    component: Base,
+    children:[
+      // {
+      //   path: 'host',
+      //   name: 'Host',
+      //   component: Host,
+      //   meta: {
+      //     title: "主机管理",
+      //     authorization: true
+      //   }
+      // }
+    ]
+  },
+  {
+    // path: '/about',
+    // name: 'about',
+    // // route level code-splitting
+    // // this generates a separate chunk (about.[hash].js) for this route
+    // // which is lazy-loaded when the route is visited.
+    // component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+// 导航守卫
+router.beforeEach((to, from, next) => {
+  // console.log("to", to)
+  // console.log("from", from)
+  // console.log("nextß", next)
+
+  document.title = to.meta.title
+
+  // 登录状态验证
+  console.log("to meta", to.meta)
+  if (to.meta.authorization && !storage.getUserInfo()) {
+    next({"name": "Login"})
+  } else {
+    next()
+  }
 })
 
 export default router
