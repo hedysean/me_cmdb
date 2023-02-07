@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // import ShowCenter from "../views/ShowCenter.vue"
 import Base from "../views/Base.vue"
+import Login from "@/views/Login.vue";
 
 const routes = [
   {
@@ -10,10 +11,10 @@ const routes = [
   },
   {
     path: '/',
-    alias:'/',
+    alias: '/',
     name: 'home',
     component: Base,
-    children:[
+    children: [
       // {
       //   path: 'host',
       //   name: 'Host',
@@ -23,7 +24,16 @@ const routes = [
       //     authorization: true
       //   }
       // }
-    ]
+    ],
+  },
+  {
+    meta: {
+      title: '账户登陆',
+      authorization: false
+    },
+    path: '/login',
+    name: 'Login',
+    component: Login // 快捷键：Alt+Enter快速导包，
   },
   {
     // path: '/about',

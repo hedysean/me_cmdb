@@ -2,8 +2,9 @@
   <a-layout style="min-height: 100vh">
     <a-layout-sider v-model:collapsed="collapsed" collapsible>
       <div class="logo"
-           style="font-style: italic;text-align: center;font-size: 20px;color:#fff;margin: 10px 0;line-height: 50px;font-family: 'Times New Roman'">
-        <span><a-switch v-model:checked="checked"/> DevOps</span>
+           style="font-style: italic;text-align: center;font-size: 22px;color:#fff;margin: 10px 0;line-height: 50px;font-family: 'Times New Roman'">
+<!--        <span><a-switch v-model:checked="checked"/> MeDevOps</span>-->
+        <span>MeDevOps</span>
       </div>
       <a-menu v-for="menu in menu_list" v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
 
@@ -41,16 +42,16 @@
         <a-row type="flex" justify="start">
 
           <a-col :span="6">
-            <a-breadcrumb>
-              <a-breadcrumb-item href="">
-                <home-outlined/>
-              </a-breadcrumb-item>
-              <a-breadcrumb-item href="">
-                <user-outlined/>
-                <span>Application List</span>
-              </a-breadcrumb-item>
-              <a-breadcrumb-item>Application</a-breadcrumb-item>
-            </a-breadcrumb>
+<!--            <a-breadcrumb>-->
+<!--              <a-breadcrumb-item href="">-->
+<!--                <home-outlined/>-->
+<!--              </a-breadcrumb-item>-->
+<!--              <a-breadcrumb-item href="">-->
+<!--                <user-outlined/>-->
+<!--                <span>Application List</span>-->
+<!--              </a-breadcrumb-item>-->
+<!--              <a-breadcrumb-item>Application</a-breadcrumb-item>-->
+<!--            </a-breadcrumb>-->
           </a-col>
 
           <a-col :span="1" :offset="17">
@@ -93,8 +94,8 @@
 
 <script setup>
 import {reactive, ref} from 'vue';
-// import storage from "@/utils/storage";
-// import MyIcon from "@/components/MyIcon";
+import storage from "@/utils/storage";
+import MyIcon from "@/components/MyIcon";
 import router from '@/router/index.js'
 
 const collapsed = ref(false)
@@ -103,32 +104,32 @@ const checked = ref(true)
 
 const menu_list = reactive([
   {
-    id: 1, icon: 'settings', title: '系统管理', tube: '', 'menu_url': '/bingo/show_center', children: []
+    id: 1, icon: 'settings', title: '系统管理', tube: '', 'menu_url': '/show_center', children: []
   },
   {
-    id: 2, icon: 'desktop', title: '资产管理', 'menu_url': '/bingo/host', children: []
+    id: 2, icon: 'desktop', title: '资产管理', 'menu_url': '/host', children: []
   },
   {
-    id: 3, icon: 'cloud', title: '批量任务', tube: '', menu_url: '/bingo/workbench', children: [
-      {id: 10, icon: 'mail', title: '执行任务', 'menu_url': '/bingo/multi_exec'},
-      {id: 11, icon: 'mail', title: '命令管理', 'menu_url': '/bingo/template_manage'},
+    id: 3, icon: 'cloud', title: '批量任务', tube: '', menu_url: '/workbench', children: [
+      {id: 10, icon: 'mail', title: '执行任务', 'menu_url': '/multi_exec'},
+      {id: 11, icon: 'mail', title: '命令管理', 'menu_url': '/template_manage'},
     ]
   },
   {
-    id: 4, icon: 'git', title: '代码发布', tube: '', menu_url: '/bingo/workbench', children: [
-      {id: 12, title: '应用管理', menu_url: '/bingo/release'},
-      {id: 13, title: '发布申请', menu_url: '/bingo/release'}
+    id: 4, icon: 'git', title: '代码发布', tube: '', menu_url: '/workbench', children: [
+      {id: 12, title: '应用管理', menu_url: '/release'},
+      {id: 13, title: '发布申请', menu_url: '/release'}
     ]
   },
-  {id: 5, icon: 'history', title: '定时计划', tube: '', menu_url: '/bingo/workbench', children: []},
+  {id: 5, icon: 'history', title: '定时计划', tube: '', menu_url: '/workbench', children: []},
 
-  {id: 7, icon: 'monitor', title: '监控预警', tube: '', 'menu_url': '/bingo/workbench', children: []},
+  {id: 7, icon: 'monitor', title: '监控预警', tube: '', 'menu_url': '/workbench', children: []},
 
   {
-    id: 9, icon: 'user', title: '用户中心', tube: '', menu_url: '/bingo/workbench', children: [
-      {id: 20, title: '账户管理', tube: '', menu_url: '/bingo/workbench'},
-      {id: 21, title: '角色管理', tube: '', menu_url: '/bingo/workbench'},
-      {id: 22, title: '系统设置', tube: '', menu_url: '/bingo/workbench'}
+    id: 9, icon: 'user', title: '用户中心', tube: '', menu_url: '/workbench', children: [
+      {id: 20, title: '账户管理', tube: '', menu_url: '/workbench'},
+      {id: 21, title: '角色管理', tube: '', menu_url: '/workbench'},
+      {id: 22, title: '系统设置', tube: '', menu_url: '/workbench'}
     ]
   }
 ])
