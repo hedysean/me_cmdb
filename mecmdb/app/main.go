@@ -25,7 +25,6 @@ func main() {
 
 	//初始化配置
 	err = config.Init(fmt.Sprintf("%s/app/config/config.json", dir))
-	fmt.Println("我的位置", dir)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -51,6 +50,10 @@ func main() {
 	Orm := InitDB(config.Conf.DatabaseConfig)
 	// 数据迁移
 	Orm.AutoMigrate(&model.User{})
+
+	//迁移idc公司数据库
+	Orm.AutoMigrate(&model.IdcCompany{})
+
 	// 禁用复数ll
 	Orm.SingularTable(true)
 	defer Orm.Close()

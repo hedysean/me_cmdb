@@ -19,7 +19,7 @@ func InitRouter() *gin.Engine {
 	//注册使用中间件
 	Router.Use(middleware.GinLogger(), middleware.GinRecovery(true))
 	Router.Use(middleware.ExceptionMiddleware)
-	
+
 	//全局验证
 	//Router.Use(middleware.JWTAuthorization())
 	Router.Use(middleware.CORS)
@@ -29,6 +29,7 @@ func InitRouter() *gin.Engine {
 	ApiGroup := Router.Group("/api")
 	// 3. 初始化用户相关路由
 	router.InitUserRouter(ApiGroup)
+	router.InitAssetsRouter(ApiGroup)
 	zap.S().Info("路由初始化完成....")
 
 	return Router
