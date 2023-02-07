@@ -1,0 +1,7 @@
+{"level":"DEBUG","time":"2023-02-07T21:58:39.721+0800","caller":"app/main.go:42","msg":"调试信息:8000"}
+{"level":"INFO","time":"2023-02-07T21:58:39.728+0800","caller":"initialize/router.go:27","msg":"中间件注册完成..."}
+{"level":"INFO","time":"2023-02-07T21:58:39.729+0800","caller":"initialize/router.go:33","msg":"路由初始化完成...."}
+{"level":"INFO","time":"2023-02-07T21:58:39.729+0800","caller":"app/main.go:48","msg":"服务端启动...端口：8000"}
+{"level":"INFO","time":"2023-02-07T21:58:48.709+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 200  <nil>} {method 15 0 GET <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 716100  <nil>}"}
+{"level":"INFO","time":"2023-02-07T22:00:59.675+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 200  <nil>} {method 15 0 POST <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 5028500  <nil>}"}
+{"level":"INFO","time":"2023-02-07T22:01:26.666+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 200  <nil>} {method 15 0 GET <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 846200  <nil>}"}

@@ -24,7 +24,8 @@ func main() {
 	}
 
 	//初始化配置
-	err = config.Init(fmt.Sprintf("%s/app/config/config.json", dir))
+	err = config.Init(fmt.Sprintf("%s/mecmdb/app/config/config.json", dir))
+	fmt.Println("当前目录路径", dir)
 	if err != nil {
 		panic(err.Error())
 	}

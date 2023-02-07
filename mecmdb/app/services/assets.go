@@ -3,9 +3,9 @@ package services
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	. "mecmdb/app/model"
 	"time"
 )
-import . "mecmdb/app/model"
 
 /*
 * @author Yapeng
@@ -27,7 +27,6 @@ func CreateIdcCompany(ctx *gin.Context) (IdcCompanyInstance, error) {
 	idcCompany.UpdateTime = time.Now()
 	var instance IdcCompanyInstance
 	var err error
-	fmt.Println("请求数据", ctx.Request.Body)
 	if err = ctx.ShouldBindJSON(&idcCompany); err != nil {
 		return instance, err
 	}
@@ -47,12 +46,14 @@ func CreateIdcCompany(ctx *gin.Context) (IdcCompanyInstance, error) {
 获取所有idc_company列表
 */
 
-func GetIdcCompanyInstanceList(ctx *gin.Context) ([]IdcCompanyInstance, error) {
+func GetIdcCompanyList(ctx *gin.Context) ([]IdcCompanyInstance, error) {
 	idcCompany := IdcCompany{}
-	idcCompanyInstanceList, err := idcCompany.GetAll()
-	return idcCompanyInstanceList, err
+	idcCompanyList, err := idcCompany.GetAll()
+	return idcCompanyList, err
 }
 
-func GetOneIdcCompany(ctx *gin.Context) (IdcCompanyInstance, error) {
-	//IdcCompany := IdcCompany{}.GetOneById()
+func DeleteIdcCompany(id uint) error {
+	idcCompany := IdcCompany{}
+	err := idcCompany.Delete(id)
+	return err
 }

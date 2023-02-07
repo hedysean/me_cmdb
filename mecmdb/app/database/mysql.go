@@ -47,10 +47,3 @@ func InitDB(cfg *config.DatabaseConfig) *gorm.DB {
 }
 
 //定义初始化SQL必须字段
-
-type Model struct {
-	ID        uint `gorm:"primaryKey"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt bool `gorm:"default:true"`
-}

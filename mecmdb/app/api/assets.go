@@ -5,6 +5,7 @@ import (
 	"mecmdb/app/constants"
 	"mecmdb/app/services"
 	"net/http"
+	"strconv"
 )
 
 /*
@@ -17,7 +18,7 @@ import (
 添加idc公司
 */
 
-func IdcCompanyCreate(ctx *gin.Context) {
+func CreateIdcCompany(ctx *gin.Context) {
 	idcCompany, err := services.CreateIdcCompany(ctx)
 
 	if err != nil {
@@ -34,8 +35,8 @@ func IdcCompanyCreate(ctx *gin.Context) {
 	})
 }
 
-func IdcCompanyInstanceGet(ctx *gin.Context) {
-	idcCompanyInstanceList, err := services.GetIdcCompanyInstanceList(ctx)
+func GetIdcCompanyList(ctx *gin.Context) {
+	idcCompanyInstanceList, err := services.GetIdcCompanyList(ctx)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"code":    constants.CodeGetIdcCompanyFail,
@@ -49,5 +50,22 @@ func IdcCompanyInstanceGet(ctx *gin.Context) {
 		"data": map[string]interface{}{
 			"idc_company_instance_list": idcCompanyInstanceList,
 		},
+	})
+}
+func DeleteIdcCompany(ctx *gin.Context) {
+	strId, _ := ctx.GetQuery("id")
+	delId, _ := strconv.Atoi(strId)
+
+	err := services.DeleteIdcCompany(uint(delId))
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"code":    constants.CodeDelIdcCompanyFail,
+			"message": err.Error(),
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{
+		"code":    constants.CodeSuccess,
+		"message": constants.Success,
 	})
 }

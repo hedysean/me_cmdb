@@ -15,6 +15,7 @@ import (
 func InitAssetsRouter(Router *gin.RouterGroup) {
 	HostRouter := Router.Group("assets")
 	//HostRouter.Use(middleware.JWTAuthorization())
-	utils.Register(HostRouter, []string{"POST"}, "company", api.IdcCompanyCreate)
-	utils.Register(HostRouter, []string{"GET"}, "company", api.IdcCompanyInstanceGet)
+	utils.Register(HostRouter, []string{"POST"}, "company", api.CreateIdcCompany)
+	utils.Register(HostRouter, []string{"GET"}, "company", api.GetIdcCompanyList)
+	utils.Register(HostRouter, []string{"DELETE"}, "company", api.DeleteIdcCompany)
 }

@@ -3,11 +3,10 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"mecmdb/app/constants"
+	"mecmdb/app/services"
 	"mecmdb/app/utils"
 	"net/http"
 	"strconv"
-
-	. "mecmdb/app/services"
 )
 
 /*
@@ -23,7 +22,7 @@ import (
 func UserAuthenticate(ctx *gin.Context) {
 	// 用户登陆认证业务
 	//user, err := UserLogin(ctx)
-	user := UserLogin(ctx)
+	user := services.UserLogin(ctx)
 
 	//if err != nil  {
 	//	ctx.JSON(http.StatusOK, gin.H{
@@ -66,7 +65,7 @@ func UserAuthenticate(ctx *gin.Context) {
 
 func UserCreate(ctx *gin.Context) {
 
-	id, err := CreateUser(ctx)
+	id, err := services.CreateUser(ctx)
 	if err != nil || id < 1 {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code":    constants.CodeCreateUserFail,
