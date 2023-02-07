@@ -52,3 +52,7 @@ func GetIdcCompanyInstanceList(ctx *gin.Context) ([]IdcCompanyInstance, error) {
 	idcCompanyInstanceList, err := idcCompany.GetAll()
 	return idcCompanyInstanceList, err
 }
+
+func GetOneIdcCompany(ctx *gin.Context) (IdcCompanyInstance, error) {
+	//IdcCompany := IdcCompany{}.GetOneById()
+}

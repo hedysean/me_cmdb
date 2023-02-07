@@ -50,3 +50,9 @@ func (company IdcCompany) GetAll() ([]IdcCompanyInstance, error) {
 	err := Orm.Table(company.TableName()).Order("id desc").Scan(&idcCompanyInstanceList).Error
 	return idcCompanyInstanceList, err
 }
+
+func (company IdcCompany) GetOneById(id uint) (IdcCompanyInstance, error) {
+	var idcCompany IdcCompanyInstance
+	err := Orm.Where("id = ?", id).First(&idcCompany).Error
+	return idcCompany, err
+}
