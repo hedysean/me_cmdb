@@ -84,3 +84,23 @@ func UpdateIdcCompany(ctx *gin.Context) {
 		"data":    newInstance,
 	})
 }
+
+/**
+添加机房信息相关
+*/
+
+func CreateIdc(ctx *gin.Context) {
+
+	err := services.CreateIdc(ctx)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"code":    constants.CodeCreateIdcFail,
+			"message": err.Error(),
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{
+		"code":    constants.CodeSuccess,
+		"message": constants.Success,
+	})
+}

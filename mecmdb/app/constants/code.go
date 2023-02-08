@@ -16,6 +16,12 @@ const (
 	CodeGetIdcCompanyFail    = 1011 // 无法获取IDC公司列表！
 	CodeDelIdcCompanyFail    = 1012 // 删除IDC公司失败
 	CodeUpdateIdcCompanyFail = 1013
+
+	CodeCreateIdcFail = 1010 // 添加机房失败// ！
+	CodeGetIdcFail    = 1011 // 无法获取机房列表！
+	CodeDelIdcFail    = 1012 // 删除IDC机房失败
+	CodeUpdateIdcFail = 1013
+
 	//CodeCreateHostFail       = 1012 // 添加主机信息失败！
 	//CodeGetHostFail          = 1013 // 无法获取主机列表
 	//CodeDelHostFail          = 1015 // 删除主机失败

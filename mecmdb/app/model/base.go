@@ -9,8 +9,8 @@ import "time"
  */
 
 type Base struct {
-	ID         uint `gorm:"primary_key"`
-	CreateTime time.Time
-	UpdateTime time.Time
-	Status     bool `gorm:"default:1"`
+	ID         uint      `gorm:"column:id;primary_key"`
+	CreateTime time.Time `gorm:"column:create_time"`
+	UpdateTime time.Time `gorm:"column:update_time"`
+	Status     bool      `gorm:"column:status;default:1"`
 }

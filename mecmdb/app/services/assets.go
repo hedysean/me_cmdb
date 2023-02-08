@@ -80,3 +80,23 @@ func UpdateIdcCompany(ctx *gin.Context) (IdcCompanyInstance, error) {
 
 	return instance, err
 }
+
+func CreateIdc(ctx *gin.Context) error {
+	idc := Idc{}
+
+	//更新时间
+	idc.CreateTime = time.Now()
+	idc.UpdateTime = time.Now()
+
+	var err error
+
+	if err = ctx.ShouldBindJSON(&idc); err != nil {
+		return err
+	}
+	fmt.Println("绑定后数据机房名称：", idc.IdcName)
+	fmt.Println("绑定后数据公司ID：", idc.CompanyID)
+	fmt.Println("绑定后数据机房位置：", idc.Region)
+	err = idc.Create()
+
+	return err
+}

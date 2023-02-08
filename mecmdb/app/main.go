@@ -57,6 +57,7 @@ func main() {
 
 	//迁移idc公司数据库
 	Orm.AutoMigrate(&model.IdcCompany{})
+	Orm.AutoMigrate(&model.Idc{})
 
 	// 禁用复数ll
 	Orm.SingularTable(true)

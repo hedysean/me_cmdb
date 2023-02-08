@@ -19,4 +19,7 @@ func InitAssetsRouter(Router *gin.RouterGroup) {
 	utils.Register(HostRouter, []string{"GET"}, "company", api.GetIdcCompanyList)
 	utils.Register(HostRouter, []string{"DELETE"}, "company", api.DeleteIdcCompany)
 	utils.Register(HostRouter, []string{"PUT"}, "company", api.UpdateIdcCompany)
+
+	//IDC相关操作
+	utils.Register(HostRouter, []string{"POST"}, "idc", api.CreateIdc)
 }
