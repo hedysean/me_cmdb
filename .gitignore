@@ -2,5 +2,6 @@
 .vscode
 .idea
 ./mecmdb/app/config/config.json
-./mecmdb/logs/
-./logs/
+./mecmdb/logs/*
+./logs/*
+# 忽略测试用
