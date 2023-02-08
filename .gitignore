@@ -1,5 +1,6 @@
 .DS_Store
 .vscode
 .idea
-./app/config/config.json
+./mecmdb/app/config/config.json
+./mecmdb/logs/
 ./logs/
