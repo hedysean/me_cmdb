@@ -36,7 +36,7 @@ func CreateIdcCompany(ctx *gin.Context) {
 }
 
 func GetIdcCompanyList(ctx *gin.Context) {
-	idcCompanyInstanceList, err := services.GetIdcCompanyList(ctx)
+	idcCompanyList, err := services.GetIdcCompanyList()
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"code":    constants.CodeGetIdcCompanyFail,
@@ -48,7 +48,7 @@ func GetIdcCompanyList(ctx *gin.Context) {
 		"code":    constants.CodeSuccess,
 		"message": constants.Success,
 		"data": map[string]interface{}{
-			"idc_company_instance_list": idcCompanyInstanceList,
+			"idc_company_list": idcCompanyList,
 		},
 	})
 }
@@ -67,5 +67,20 @@ func DeleteIdcCompany(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"code":    constants.CodeSuccess,
 		"message": constants.Success,
+	})
+}
+func UpdateIdcCompany(ctx *gin.Context) {
+	newInstance, err := services.UpdateIdcCompany(ctx)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"code":    constants.CodeUpdateIdcCompanyFail,
+			"message": err.Error(),
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{
+		"code":    constants.CodeSuccess,
+		"message": constants.Success,
+		"data":    newInstance,
 	})
 }

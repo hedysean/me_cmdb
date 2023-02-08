@@ -18,4 +18,5 @@ func InitAssetsRouter(Router *gin.RouterGroup) {
 	utils.Register(HostRouter, []string{"POST"}, "company", api.CreateIdcCompany)
 	utils.Register(HostRouter, []string{"GET"}, "company", api.GetIdcCompanyList)
 	utils.Register(HostRouter, []string{"DELETE"}, "company", api.DeleteIdcCompany)
+	utils.Register(HostRouter, []string{"PUT"}, "company", api.UpdateIdcCompany)
 }

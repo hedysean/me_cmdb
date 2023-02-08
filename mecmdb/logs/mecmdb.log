@@ -188,3 +188,26 @@
 {"level":"INFO","time":"2023-02-07T17:42:29.723+0800","caller":"initialize/router.go:33","msg":"路由初始化完成...."}
 {"level":"INFO","time":"2023-02-07T17:42:29.723+0800","caller":"app/main.go:47","msg":"服务端启动...端口：8000"}
 {"level":"INFO","time":"2023-02-07T17:42:34.186+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 400  <nil>} {method 15 0 GET <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 1553900  <nil>}"}
+{"level":"DEBUG","time":"2023-02-07T17:56:57.801+0800","caller":"app/main.go:41","msg":"调试信息:8000"}
+{"level":"INFO","time":"2023-02-07T17:56:57.822+0800","caller":"initialize/router.go:27","msg":"中间件注册完成..."}
+{"level":"INFO","time":"2023-02-07T17:56:57.822+0800","caller":"initialize/router.go:33","msg":"路由初始化完成...."}
+{"level":"INFO","time":"2023-02-07T17:56:57.822+0800","caller":"app/main.go:47","msg":"服务端启动...端口：8000"}
+{"level":"DEBUG","time":"2023-02-08T10:23:09.571+0800","caller":"app/main.go:45","msg":"调试信息:8000"}
+{"level":"INFO","time":"2023-02-08T10:23:09.588+0800","caller":"initialize/router.go:27","msg":"中间件注册完成..."}
+{"level":"INFO","time":"2023-02-08T10:23:09.589+0800","caller":"initialize/router.go:33","msg":"路由初始化完成...."}
+{"level":"INFO","time":"2023-02-08T10:23:09.589+0800","caller":"app/main.go:51","msg":"服务端启动...端口：8000"}
+{"level":"INFO","time":"2023-02-08T10:23:31.317+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 200  <nil>} {method 15 0 GET <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 2106100  <nil>}"}
+{"level":"INFO","time":"2023-02-08T10:48:53.055+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 200  <nil>} {method 15 0 POST <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 41571700  <nil>}"}
+{"level":"INFO","time":"2023-02-08T10:51:34.344+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 200  <nil>} {method 15 0 GET <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 1565700  <nil>}"}
+{"level":"DEBUG","time":"2023-02-08T10:52:50.261+0800","caller":"app/main.go:45","msg":"调试信息:8000"}
+{"level":"INFO","time":"2023-02-08T10:52:50.278+0800","caller":"initialize/router.go:27","msg":"中间件注册完成..."}
+{"level":"INFO","time":"2023-02-08T10:52:50.279+0800","caller":"initialize/router.go:33","msg":"路由初始化完成...."}
+{"level":"INFO","time":"2023-02-08T10:52:50.279+0800","caller":"app/main.go:51","msg":"服务端启动...端口：8000"}
+{"level":"INFO","time":"2023-02-08T10:53:06.379+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 200  <nil>} {method 15 0 GET <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 2978800  <nil>}"}
+{"level":"INFO","time":"2023-02-08T10:53:31.952+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 200  <nil>} {method 15 0 GET <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 1517400  <nil>}"}
+{"level":"DEBUG","time":"2023-02-08T11:54:26.788+0800","caller":"app/main.go:45","msg":"调试信息:8000"}
+{"level":"INFO","time":"2023-02-08T11:54:26.814+0800","caller":"initialize/router.go:27","msg":"中间件注册完成..."}
+{"level":"INFO","time":"2023-02-08T11:54:26.816+0800","caller":"initialize/router.go:33","msg":"路由初始化完成...."}
+{"level":"INFO","time":"2023-02-08T11:54:26.816+0800","caller":"app/main.go:51","msg":"服务端启动...端口：8000"}
+{"level":"INFO","time":"2023-02-08T11:54:43.909+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 400  <nil>} {method 15 0 PUT <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 476100  <nil>}"}
+{"level":"INFO","time":"2023-02-08T11:55:23.157+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 400  <nil>} {method 15 0 PUT <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 135000  <nil>}"}

@@ -42,23 +42,29 @@ func (company *IdcCompany) Create() error {
 }
 
 func (company IdcCompany) GetAll() ([]IdcCompanyInstance, error) {
-	var idcCompanyInstanceList []IdcCompanyInstance
+	var idcCompanyList []IdcCompanyInstance
 	//普通查询，并写入实例
 	//err := Orm.Table(company.TableName()).Scan(&idcCompanyInstanceList).Error
 
 	//倒序排列
-	err := Orm.Table(company.TableName()).Where("status = ?", 1).Order("id desc").Scan(&idcCompanyInstanceList).Error
-	return idcCompanyInstanceList, err
+	err := Orm.Table(company.TableName()).Where("status = ?", 1).Order("id desc").Scan(&idcCompanyList).Error
+	return idcCompanyList, err
 }
 
-func (company *IdcCompany) GetOneById(id uint) error {
-	err := Orm.First(&company, id).Error
-	return err
+func (company *IdcCompany) GetOneById(id uint) (IdcCompanyInstance, error) {
+	var instance IdcCompanyInstance
+	err := Orm.First(&company, id).Scan(&instance).Error
+	return instance, err
 }
 
 //func (company *IdcCompany) Update(id uint) error {
 
 func (company *IdcCompany) Delete(id uint) error {
 	err := Orm.Table(company.TableName()).Where("id = ?", id).Update("status", 0).Error
+	return err
+}
+
+func (company *IdcCompany) Update() error {
+	err := Orm.Table(company.TableName()).Where("id = ?", company.ID).Updates(&company).Error
 	return err
 }

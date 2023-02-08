@@ -16,6 +16,7 @@ import (
 func main() {
 
 	//获取一个基于整个目录入口所在得路径
+	//dir, err := filepath.Abs(filepath.Dir("."))
 	dir, err := filepath.Abs(filepath.Dir("."))
 	// vscdoe和 jet 目录逻辑不一致，这里需要根据编辑器修改
 	//fmt.Println("dir", dir)
@@ -24,7 +25,9 @@ func main() {
 	}
 
 	//初始化配置
-	err = config.Init(fmt.Sprintf("%s/mecmdb/app/config/config.json", dir))
+	//err = config.Init(fmt.Sprintf("%s/mecmdb/app/config/config.json", dir))
+	err = config.Init(fmt.Sprintf("%s/app/config/config.json", dir))
+
 	fmt.Println("当前目录路径", dir)
 	if err != nil {
 		panic(err.Error())
