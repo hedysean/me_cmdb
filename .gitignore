@@ -1,7 +1,7 @@
 .DS_Store
 .vscode
 .idea
-./mecmdb/app/config/config.json
-./mecmdb/app/logs/*
-./logs/*
+mecmdb/app/config/config.json
+mecmdb/logs/
+node_modules
 # 忽略测试用
