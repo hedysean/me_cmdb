@@ -107,7 +107,10 @@ const menu_list = reactive([
     id: 1, icon: 'settings', title: '系统管理', tube: '', 'menu_url': '/show_center', children: []
   },
   {
-    id: 2, icon: 'desktop', title: '资产管理', 'menu_url': '/host', children: []
+    id: 2, icon: 'desktop', title: '资产管理', menu_url: '/assets', children: [
+      {id: 10, title: '供应商管理', 'menu_url': '/assets/company'},
+      {id: 11, title: '机房管理', 'menu_url': '/assets/idc'},
+    ]
   },
   {
     id: 3, icon: 'cloud', title: '批量任务', tube: '', menu_url: '/workbench', children: [
@@ -134,6 +137,8 @@ const menu_list = reactive([
   }
 ])
 
+
+// 点击 logout，跳转到登录页面
 
 const logout = () => {
   storage.clearStorage()
