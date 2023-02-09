@@ -5,7 +5,6 @@ import (
 	"mecmdb/app/constants"
 	"mecmdb/app/services"
 	"net/http"
-	"strconv"
 )
 
 /*
@@ -18,12 +17,12 @@ import (
 添加idc公司
 */
 
-func CreateIdcCompany(ctx *gin.Context) {
-	idcCompany, err := services.CreateIdcCompany(ctx)
+func CreateProviderApi(ctx *gin.Context) {
+	idcCompany, err := services.CreateProviderService(ctx)
 
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
-			"code":    constants.CodeCreateIdcCompanyFail,
+			"code":    constants.CodeCreateProviderFail,
 			"message": err.Error(),
 		})
 		return
@@ -35,11 +34,11 @@ func CreateIdcCompany(ctx *gin.Context) {
 	})
 }
 
-func GetIdcCompanyList(ctx *gin.Context) {
-	idcCompanyList, err := services.GetIdcCompanyList()
+func GetProviderListApi(ctx *gin.Context) {
+	idcCompanyList, err := services.GetProviderListService()
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
-			"code":    constants.CodeGetIdcCompanyFail,
+			"code":    constants.CodeGetProviderFail,
 			"message": err.Error(),
 		})
 		return
@@ -52,14 +51,11 @@ func GetIdcCompanyList(ctx *gin.Context) {
 		},
 	})
 }
-func DeleteIdcCompany(ctx *gin.Context) {
-	strId, _ := ctx.GetQuery("id")
-	delId, _ := strconv.Atoi(strId)
-
-	err := services.DeleteIdcCompany(uint(delId))
+func DeleteProviderApi(ctx *gin.Context) {
+	err := services.DeleteProviderService(ctx)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
-			"code":    constants.CodeDelIdcCompanyFail,
+			"code":    constants.CodeDelProviderFail,
 			"message": err.Error(),
 		})
 		return
@@ -69,11 +65,11 @@ func DeleteIdcCompany(ctx *gin.Context) {
 		"message": constants.Success,
 	})
 }
-func UpdateIdcCompany(ctx *gin.Context) {
-	newInstance, err := services.UpdateIdcCompany(ctx)
+func UpdateProviderApi(ctx *gin.Context) {
+	newInstance, err := services.UpdateProviderService(ctx)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
-			"code":    constants.CodeUpdateIdcCompanyFail,
+			"code":    constants.CodeUpdateProviderFail,
 			"message": err.Error(),
 		})
 		return
@@ -89,9 +85,9 @@ func UpdateIdcCompany(ctx *gin.Context) {
 添加机房信息相关
 */
 
-func CreateIdc(ctx *gin.Context) {
+func CreateIdcApi(ctx *gin.Context) {
 
-	err := services.CreateIdc(ctx)
+	err := services.CreateIdcService(ctx)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"code":    constants.CodeCreateIdcFail,

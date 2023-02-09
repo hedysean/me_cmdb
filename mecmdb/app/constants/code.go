@@ -12,10 +12,10 @@ const (
 	CodeCreateUserFail = 1001 // 创建用户失败！
 	CodeNoSuchUser     = 1002 // 当前用户不存在
 
-	CodeCreateIdcCompanyFail = 1010 // 添加IDC公司失败// ！
-	CodeGetIdcCompanyFail    = 1011 // 无法获取IDC公司列表！
-	CodeDelIdcCompanyFail    = 1012 // 删除IDC公司失败
-	CodeUpdateIdcCompanyFail = 1013
+	CodeCreateProviderFail = 1010 // 添加IDC公司失败// ！
+	CodeGetProviderFail    = 1011 // 无法获取IDC公司列表！
+	CodeDelProviderFail    = 1012 // 删除IDC公司失败
+	CodeUpdateProviderFail = 1013
 
 	CodeCreateIdcFail = 1010 // 添加机房失败// ！
 	CodeGetIdcFail    = 1011 // 无法获取机房列表！

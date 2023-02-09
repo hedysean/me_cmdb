@@ -10,97 +10,103 @@ import (
 * @date 2023/2/7 10:10
  */
 
-// idc company相关
+// idc provider 相关
+// provider 供应者，服务者
 
-type IdcCompany struct {
+type Provider struct {
 	Base
-	CompanyName string `gorm:"column:company_name; type:varchar(255); unique"`
+	ProviderName string `json:"Provider_name" gorm:"type:varchar(255); unique"`
 }
 
 /**
-创建IDC公司使用接口实例
+创建IDC供应商使用接口实例
+
 */
 
-type IdcCompanyInstance struct {
-	ID          uint   `json:"id"`
-	CompanyName string `json:"company_name"`
+type ProviderInstance struct {
+	ID           uint   `json:"id"`
+	ProviderName string `json:"Provider_name"`
 }
 
 /**
 设置IDC公司表名
 */
 
-func (company IdcCompany) TableName() string {
-	return "idc_company"
+func (pro Provider) TableName() string {
+	return "provider"
 }
 
 /**
 添加IDC公司，操作
 */
 
-func (company *IdcCompany) Create() error {
-	err := Orm.Create(&company).Error
+func (pro *Provider) Create() error {
+	err := Orm.Create(&pro).Error
 	return err
 }
 
-func (company IdcCompany) GetAll() ([]IdcCompanyInstance, error) {
-	var idcCompanyList []IdcCompanyInstance
+func (pro *Provider) GetAll() ([]ProviderInstance, error) {
+	var ProviderList []ProviderInstance
 	//普通查询，并写入实例
-	//err := Orm.Table(company.TableName()).Scan(&idcCompanyInstanceList).Error
+	//err := Orm.Table(Provider.TableName()).Scan(&idcProviderInstanceList).Error
 
 	//倒序排列
-	err := Orm.Table(company.TableName()).Where("status = ?", 1).Order("id desc").Scan(&idcCompanyList).Error
-	return idcCompanyList, err
+	err := Orm.Table(pro.TableName()).Where("status = ?", 1).Order("id desc").Scan(&ProviderList).Error
+	return ProviderList, err
 }
 
-func (company *IdcCompany) GetOneById(id uint) (IdcCompanyInstance, error) {
-	var instance IdcCompanyInstance
-	err := Orm.First(&company, id).Scan(&instance).Error
+func (pro *Provider) GetOneById(id uint) (ProviderInstance, error) {
+	var instance ProviderInstance
+	err := Orm.First(&pro, id).Scan(&instance).Error
 	return instance, err
 }
 
-func (company *IdcCompany) Delete(id uint) error {
-	err := Orm.Table(company.TableName()).Where("id = ?", id).Update("status", 0).Error
+func (pro *Provider) Delete(id uint) error {
+	err := Orm.Table(pro.TableName()).Where("id = ?", id).Update("status", 0).Error
 	return err
 }
 
-func (company *IdcCompany) Update() error {
-	err := Orm.Table(company.TableName()).Where("id = ?", company.ID).Updates(&company).Error
+func (pro *Provider) Update() error {
+	err := Orm.Table(pro.TableName()).Where("id = ?", pro.ID).Updates(&pro).Error
 	return err
 }
 
-//func (company *IdcCompany) GetCompanyIdByName(name string) (IdcCompanyInstance, error) {
-//	var instance IdcCompanyInstance
-//	err := Orm.Table(company.TableName()).Where("company_name = ?", name).Scan(&instance).Error
-//	return instance, err
-//}
+/**
+idc 相关操作封装
+*/
 
-// idc 相关操作封装
+/**
+配置数据库字段
+*/
 
 type Idc struct {
 	Base
-	IdcName   string `json:"idc_name" gorm:"varchar(255)"`
-	CompanyID uint   `json:"company_id" gorm:"type:int"`
-	Region    string `json:"region" gorm:"varchar(255)"`
+	IdcName    string `json:"idc_name" gorm:"varchar(255)"`
+	ProviderID uint   `json:"provider_id" gorm:"type:int"`
+	Region     string `json:"region" gorm:"varchar(255)"`
 }
 
+/**
+声明查询返回数据字段
+*/
+
 type IdcInstance struct {
-	ID          uint   `json:"id"`
-	IdcName     string `json:"idc_name"`
-	Region      string `json:"region"`
-	CompanyName string `json:"company_name"`
+	ID           uint   `json:"id"`
+	IdcName      string `json:"idc_name"`
+	Region       string `json:"region"`
+	ProviderName string `json:"Provider_name"`
 }
 
 func (idc Idc) TableName() string {
 	return "idc"
 }
 
-func (idc *Idc) Create() error {
+func (idc *Idc) CreateIdc() error {
 	err := Orm.Create(&idc).Error
 	return err
 }
 
-func (idc *Idc) GetAll() ([]IdcInstance, error) {
+func (idc *Idc) GetIdcAll() ([]IdcInstance, error) {
 	var idcList []IdcInstance
 	err := Orm.Table(idc.TableName()).Where("status = ?", 1).Order("id desc").Scan(&idcList).Error
 

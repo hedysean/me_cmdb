@@ -56,7 +56,7 @@ func main() {
 	Orm.AutoMigrate(&model.User{})
 
 	//迁移idc公司数据库
-	Orm.AutoMigrate(&model.IdcCompany{})
+	Orm.AutoMigrate(&model.Provider{})
 	Orm.AutoMigrate(&model.Idc{})
 
 	// 禁用复数ll
