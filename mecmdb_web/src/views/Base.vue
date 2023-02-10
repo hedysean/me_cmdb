@@ -108,7 +108,7 @@ const menu_list = reactive([
   },
   {
     id: 2, icon: 'desktop', title: '资产管理', menu_url: '/assets', children: [
-      {id: 10, title: '供应商管理', 'menu_url': '/assets/company'},
+      {id: 10, title: '供应商管理', 'menu_url': '/assets/provider'},
       {id: 11, title: '机房管理', 'menu_url': '/assets/idc'},
     ]
   },

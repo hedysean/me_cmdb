@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // import ShowCenter from "../views/ShowCenter.vue"
 import Base from "../views/Base.vue"
-import Login from "@/views/Login.vue";
+import Login from "@/views/Login.vue"
+import Provider from "@/views/Provider.vue"
+import { ConfigProvider } from 'ant-design-vue'
+import { provide } from 'vue';
 
 const routes = [
   {
@@ -15,15 +18,15 @@ const routes = [
     name: 'home',
     component: Base,
     children: [
-      // {
-      //   path: 'host',
-      //   name: 'Host',
-      //   component: Host,
-      //   meta: {
-      //     title: "主机管理",
-      //     authorization: true
-      //   }
-      // }
+      {
+        path: 'assets/provider',
+        name: 'provider',
+        component: Provider,
+        meta: {
+          title: "供应商管理",
+          authorization: false
+        }
+      }
     ],
   },
   {

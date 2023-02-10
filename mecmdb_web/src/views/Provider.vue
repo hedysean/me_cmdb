@@ -1,8 +1,12 @@
 <template>
-  <div class="host">
+  <div class="provider">
 
     <div>
-      <a-button type="primary" @click="showModal" style="margin: 8px 0">添加主机</a-button>
+      <div>
+        <a-button type="primary" @click="showModal" style="margin: 8px 0;">添加供应商</a-button>
+      </div>
+    
+      <!-- <a-button type="primary" @click="showModal" style="margin: 8px 0">添加供应商</a-button> -->
       <a-modal width="860px" v-model:visible="visible" title="Basic Modal" @ok="handleOk" @cancel="cancelForm">
 
         <a-form
@@ -14,59 +18,13 @@
             @finish="handleFinish"
             @validate="handleValidate"
             @finishFailed="handleFinishFailed"
-        >
-          <a-form-item label="主机类别" prop="zone" name="category">
-            <a-row>
-              <a-col :span="12">
-                <a-select
-                    ref="select"
-                    v-model:value="hostForm.form.host_category_id"
-
-                >
-                  <a-select-option :value="category.id" v-for="category in categoryList.data" :key="category.id">
-                    {{ category.name }}
-                  </a-select-option>
-                </a-select>
-              </a-col>
-
-            </a-row>
-
+          >
+          <!-- 展示列表 -->
+          <a-form-item has-feedback label="供应商名称" name="provider_name">
+            <a-input v-model:value="providerForm.form.name" type="text" autocomplete="off"/>
           </a-form-item>
-
-          <a-form-item has-feedback label="主机名称" name="name">
-            <a-input v-model:value="hostForm.form.name" type="text" autocomplete="off"/>
-          </a-form-item>
-
-
-          <a-form-item label="连接地址" name="username">
-
-            <a-row>
-              <a-col :span="8">
-                <a-input placeholder="用户名" addon-before="ssh" v-model:value="hostForm.form.username" type="text"
-                         autocomplete="off"/>
-              </a-col>
-              <a-col :span="8">
-                <a-input placeholder="ip地址" addon-before="@" v-model:value="hostForm.form.ip_addr" type="text"
-                         autocomplete="off"/>
-              </a-col>
-              <a-col :span="8">
-                <a-input placeholder="端口号" addon-before="-p" v-model:value="hostForm.form.port" type="text"
-                         autocomplete="off"/>
-              </a-col>
-            </a-row>
-          </a-form-item>
-
-          <a-form-item has-feedback label="连接密码" name="password">
-            <a-input v-model:value="hostForm.form.password" type="password" autocomplete="off"/>
-          </a-form-item>
-
-          <a-form-item has-feedback label="备注信息" name="remark">
-            <a-textarea placeholder="请输入主机备注信息" v-model:value="hostForm.form.remark" type="text"
-                        :auto-size="{ minRows: 3, maxRows: 5 }" autocomplete="off"/>
-          </a-form-item>
-
-
           <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
+<!-- 重置按钮 -->
             <a-button @click="resetForm">Reset</a-button>
           </a-form-item>
         </a-form>
@@ -115,25 +73,9 @@ import http from "../utils/http"
 const columns = [{
   title: '供应商名称',
   dataIndex: 'category_name',
-}, {
-  title: '主机名称',
-  dataIndex: 'name',
-}, {
-  title: 'IP地址',
-  dataIndex: 'ip_addr',
-}, {
-  title: '端口',
-  dataIndex: 'port',
-}, {
-  title: '备注',
-  dataIndex: 'remark',
-}, {
-  title: '编辑',
-  dataIndex: 'operation_edit',
-}, {
-  title: '删除',
-  dataIndex: 'operation_del',
 }];
+
+
 const dataSource = ref([]);
 const count = computed(() => dataSource.value.length + 1);
 const editableData = reactive({});
@@ -147,7 +89,7 @@ const save = key => {
 const onDelete = id => {
   console.log("id", id)
   // axios请求
-  http.delete("/host", {
+  http.delete("/assets/provider", {
     params: {
       "id": id
     }
@@ -176,14 +118,15 @@ const handleOk = e => {
   // 发送Ajax请求，添加主机
   // 获取主机类别
 
-  hostForm.form.port = parseInt(hostForm.form.port)
-  console.log("form", hostForm.form)
+  // providerForm.form.name = parseInt(Form.form.name)
 
-  http.post("/host/", hostForm.form).then((res) => {
+  console.log("form", providerForm.form.name)
+
+  http.post("/assets/provider", providerForm.form).then((res) => {
     console.log("res", res);
 
     // 前端显示添加主机
-    dataSource.value.unshift(res.data.data.host)
+    dataSource.value.unshift(res.data.data.name)
 
 
   })
@@ -202,43 +145,43 @@ const cancelForm = e => {
   resetForm()
   visible.value = false;
 };
-const hostForm = reactive({
+const providerForm = reactive({
   labelCol: {span: 6},
   wrapperCol: {span: 14},
   other: '',
   form: {
     name: '',
-    host_category_id: "",
-    ip_addr: '',
-    username: '',
-    port: '',
-    remark: '',
-    password: ''
+    // host_category_id: "",
+    // ip_addr: '',
+    // username: '',
+    // port: '',
+    // remark: '',
+    // password: ''
   },
   rules: {
     name: [
-      {required: true, message: '请输入主机名称', trigger: 'blur'},
+      {required: true, message: '请输入供应商名称', trigger: 'blur'},
       {min: 3, max: 30, message: '长度在3-10位之间', trigger: 'blur'}
     ],
-    password: [
-      {required: true, message: '请输入连接密码', trigger: 'blur'},
-      {min: 3, max: 30, message: '长度在3-10位之间', trigger: 'blur'}
-    ],
-    host_category_id: [
-      {required: true, message: '请选择类别', trigger: 'change'}
-    ],
-    username: [
-      {required: true, message: '请输入用户名', trigger: 'blur'},
-      {min: 3, max: 30, message: '长度在3-10位', trigger: 'blur'}
-    ],
-    ip_addr: [
-      {required: true, message: '请输入连接地址', trigger: 'blur'},
-      {max: 30, message: '长度最大15位', trigger: 'blur'}
-    ],
-    port: [
-      {required: true, message: '请输入端口号', trigger: 'blur'},
-      {max: 5, message: '长度最大5位', trigger: 'blur'}
-    ]
+    // password: [
+    //   {required: true, message: '请输入连接密码', trigger: 'blur'},
+    //   {min: 3, max: 30, message: '长度在3-10位之间', trigger: 'blur'}
+    // ],
+    // host_category_id: [
+    //   {required: true, message: '请选择类别', trigger: 'change'}
+    // ],
+    // username: [
+    //   {required: true, message: '请输入用户名', trigger: 'blur'},
+    //   {min: 3, max: 30, message: '长度在3-10位', trigger: 'blur'}
+    // ],
+    // ip_addr: [
+    //   {required: true, message: '请输入连接地址', trigger: 'blur'},
+    //   {max: 30, message: '长度最大15位', trigger: 'blur'}
+    // ],
+    // port: [
+    //   {required: true, message: '请输入端口号', trigger: 'blur'},
+    //   {max: 5, message: '长度最大5位', trigger: 'blur'}
+    // ]
   }
 });
 const formRef = ref();
@@ -265,24 +208,24 @@ const resetForm = () => {
 const handleValidate = (...args) => {
   console.log(args);
 };
-const categoryList = reactive({
+const providerList = reactive({
   data: []
 })
 
 onMounted(() => {
-  // 获取主机列表
-  http.get("/host/").then((res) => {
+  // 获取供应商列表
+  http.get("/assets/provider").then((res) => {
     console.log("res", res);
 
-    dataSource.value = res.data.data.host_list
+    dataSource.value = res.data.data.provider_list
   })
 
-  // 获取主机类别
-  http.get("/host/category").then((res) => {
-    console.log("res", res);
+  // /获取主机类别
+  // http.get("/host/category").then((res) => {
+  //   console.log("res", res);
 
-    categoryList.data = res.data.data.host_category_list
-  })
+  //   categoryList.data = res.data.data.host_category_list
+  // })
 
 
 })
