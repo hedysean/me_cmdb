@@ -45,3 +45,8 @@
 {"level":"INFO","time":"2023-02-09T19:59:07.541+0800","caller":"initialize/router.go:33","msg":"路由初始化完成...."}
 {"level":"INFO","time":"2023-02-09T19:59:07.541+0800","caller":"app/main.go:51","msg":"服务端启动...端口：8000"}
 {"level":"INFO","time":"2023-02-09T19:59:53.572+0800","caller":"middleware/logger.go:32","msg":"/api/assets/company{status 11 200  <nil>} {method 15 0 DELETE <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 PostmanRuntime/7.30.0 <nil>} {cost timer 8 266501800  <nil>}"}
+{"level":"DEBUG","time":"2023-02-10T10:33:10.076+0800","caller":"app/main.go:45","msg":"调试信息:8000"}
+{"level":"INFO","time":"2023-02-10T10:33:10.120+0800","caller":"initialize/router.go:27","msg":"中间件注册完成..."}
+{"level":"INFO","time":"2023-02-10T10:33:10.121+0800","caller":"initialize/router.go:33","msg":"路由初始化完成...."}
+{"level":"INFO","time":"2023-02-10T10:33:10.121+0800","caller":"app/main.go:51","msg":"服务端启动...端口：8000"}
+{"level":"PANIC","time":"2023-02-10T10:33:13.053+0800","caller":"app/main.go:69","msg":"服务端启动失败：listen tcp :8000: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted."}

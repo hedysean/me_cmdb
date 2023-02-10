@@ -15,10 +15,10 @@ import (
 func InitAssetsRouter(Router *gin.RouterGroup) {
 	HostRouter := Router.Group("assets")
 	//HostRouter.Use(middleware.JWTAuthorization())
-	utils.Register(HostRouter, []string{"POST"}, "company", api.CreateProviderApi)
-	utils.Register(HostRouter, []string{"GET"}, "company", api.GetProviderListApi)
-	utils.Register(HostRouter, []string{"DELETE"}, "company", api.DeleteProviderApi)
-	utils.Register(HostRouter, []string{"PUT"}, "company", api.UpdateProviderApi)
+	utils.Register(HostRouter, []string{"POST"}, "provider", api.CreateProviderApi)
+	utils.Register(HostRouter, []string{"GET"}, "provider", api.GetProviderListApi)
+	utils.Register(HostRouter, []string{"DELETE"}, "provider", api.DeleteProviderApi)
+	utils.Register(HostRouter, []string{"PUT"}, "provider", api.UpdateProviderApi)
 
 	//IDC相关操作
 	utils.Register(HostRouter, []string{"POST"}, "idc", api.CreateIdcApi)
