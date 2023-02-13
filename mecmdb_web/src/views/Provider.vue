@@ -2,28 +2,25 @@
   <div class="provider">
 
     <div>
-      <div>
-        <a-button type="primary" @click="showModal" style="margin: 8px 0;">添加供应商</a-button>
-      </div>
-    
+        <a-button type="primary" @click="showModal" style="margin: 8px 0;float: left;">添加供应商</a-button>
       <!-- <a-button type="primary" @click="showModal" style="margin: 8px 0">添加供应商</a-button> -->
-      <a-modal width="860px" v-model:visible="visible" title="Basic Modal" @ok="handleOk" @cancel="cancelForm">
+      <a-modal width="560px" v-model:visible="visible" title="添加供应商" @ok="handleOk" @cancel="cancelForm">
 
         <a-form
             ref="formRef"
             name="custom-validation"
-            :model="hostForm.form"
-            :rules="hostForm.rules"
+            :model="providerForm.form"
+            :rules="providerForm.rules" 
             v-bind="layout"
             @finish="handleFinish"
             @validate="handleValidate"
             @finishFailed="handleFinishFailed"
           >
-          <!-- 展示列表 -->
+          <!-- 弹窗列表 -->
           <a-form-item has-feedback label="供应商名称" name="provider_name">
             <a-input v-model:value="providerForm.form.name" type="text" autocomplete="off"/>
-          </a-form-item>
-          <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
+          </a-form-item>  
+          <a-form-item :wrapper-col="{ span: 12, offset: 12 }">
 <!-- 重置按钮 -->
             <a-button @click="resetForm">Reset</a-button>
           </a-form-item>
@@ -34,17 +31,17 @@
 
     <a-table bordered :data-source="dataSource" :columns="columns">
       <template #bodyCell="{ column, text, record }">
-        <template v-if="column.dataIndex === 'name'">
-          <div class="editable-cell">
-            <div v-if="editableData[record.key]" class="editable-cell-input-wrapper">
-              <a-input v-model:value="editableData[record.key].name" @pressEnter="save(record.key)"/>
+        <template v-if="column.dataIndex === 'provider_name'">
+          <!--` <div class="editable-cell">
+            <! -- <div v-if="editableData[record.key]" class="editable-cell-input-wrapper">
+              <a-input v-model:value="editableData[record.key].provider_name" @pressEnter="save(record.key)"/>
               <check-outlined class="editable-cell-icon-check" @click="save(record.key)"/>
-            </div>
-            <div v-else class="editable-cell-text-wrapper">
+            </div> -->
+            <!-- <div v-else class="editable-cell-text-wrapper">
               {{ text || ' ' }}
               <edit-outlined class="editable-cell-icon" @click="edit(record.key)"/>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div> --> -->
         </template>
         <template v-else-if="column.dataIndex === 'operation_edit'">
           edit
@@ -72,24 +69,39 @@ import http from "../utils/http"
 // 供应商表格
 const columns = [{
   title: '供应商名称',
-  dataIndex: 'category_name',
-}];
+  dataIndex: 'provider_name',
+  },
+  {
+  title: '编辑',
+  dataIndex: 'operation_edit'
+  },
+  {
+  title: '删除',
+  dataIndex: 'operation_del'
+  }
+];
 
 
 const dataSource = ref([]);
 const count = computed(() => dataSource.value.length + 1);
 const editableData = reactive({});
+
+
 const edit = key => {
   editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0]);
 };
+
+
 const save = key => {
   Object.assign(dataSource.value.filter(item => key === item.key)[0], editableData[key]);
   delete editableData[key];
 };
+
+
 const onDelete = id => {
   console.log("id", id)
   // axios请求
-  http.delete("/assets/provider", {
+  http.del+ete("/assets/provider", {
     params: {
       "id": id
     }
@@ -108,15 +120,15 @@ const onDelete = id => {
 };
 
 
-// 添加主机
+// 添加供应商
 const visible = ref(false);
 const showModal = () => {
   visible.value = true;
 };
 const handleOk = e => {
 
-  // 发送Ajax请求，添加主机
-  // 获取主机类别
+  // 发送Ajax请求，添加供应商
+  // 获取供应商
 
   // providerForm.form.name = parseInt(Form.form.name)
 
@@ -124,6 +136,7 @@ const handleOk = e => {
 
   http.post("/assets/provider", providerForm.form).then((res) => {
     console.log("res", res);
+
 
     // 前端显示添加主机
     dataSource.value.unshift(res.data.data.name)
@@ -150,7 +163,7 @@ const providerForm = reactive({
   wrapperCol: {span: 14},
   other: '',
   form: {
-    name: '',
+    provider_name: '',
     // host_category_id: "",
     // ip_addr: '',
     // username: '',
@@ -159,10 +172,10 @@ const providerForm = reactive({
     // password: ''
   },
   rules: {
-    name: [
+    provider_name: [
       {required: true, message: '请输入供应商名称', trigger: 'blur'},
       {min: 3, max: 30, message: '长度在3-10位之间', trigger: 'blur'}
-    ],
+    ]
     // password: [
     //   {required: true, message: '请输入连接密码', trigger: 'blur'},
     //   {min: 3, max: 30, message: '长度在3-10位之间', trigger: 'blur'}
@@ -215,7 +228,7 @@ const providerList = reactive({
 onMounted(() => {
   // 获取供应商列表
   http.get("/assets/provider").then((res) => {
-    console.log("res", res);
+    console.log("111111res", res);
 
     dataSource.value = res.data.data.provider_list
   })
